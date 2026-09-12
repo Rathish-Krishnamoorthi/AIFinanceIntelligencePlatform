@@ -1,0 +1,1 @@
+import React from 'react'; import DataPage from './DataPage'; export default function Budgets() { return <DataPage title="Budgets" endpoint="/budgets" columns={[['category','Category'],['allocated_budget','Allocated'],['actual_spending','Actual'],['business_priority','Priority']]}/>; }

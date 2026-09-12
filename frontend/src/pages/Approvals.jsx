@@ -1,0 +1,1 @@
+import React from 'react'; import DataPage from './DataPage'; export default function Approvals() { return <DataPage title="Approvals" endpoint="/invoices?status=PENDING_APPROVAL" columns={[['invoice_number','Invoice'],['vendor_name','Vendor'],['total_amount','Amount'],['status','Status']]}/>; }

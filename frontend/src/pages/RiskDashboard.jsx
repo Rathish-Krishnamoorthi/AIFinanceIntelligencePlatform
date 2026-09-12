@@ -1,0 +1,1 @@
+import React from 'react'; import DataPage from './DataPage'; export default function RiskDashboard() { return <DataPage title="Risk Intelligence" endpoint="/risk/transactions" columns={[['transaction_id','Transaction'],['category','Category'],['amount','Amount'],['risk_level','Level'],['risk_score','Score']]}/>; }

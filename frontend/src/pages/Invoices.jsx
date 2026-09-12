@@ -1,0 +1,1 @@
+import React from 'react'; import DataPage from './DataPage'; export default function Invoices() { return <DataPage title="Invoices" endpoint="/invoices" columns={[['invoice_number','Invoice'],['vendor_name','Vendor'],['total_amount','Amount'],['status','Status'],['risk_level','Risk']]}/>; }

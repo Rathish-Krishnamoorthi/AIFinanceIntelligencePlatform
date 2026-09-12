@@ -1,0 +1,1 @@
+import React from 'react'; import DataPage from './DataPage'; export default function AuditLogs() { return <DataPage title="Audit Logs" endpoint="/audit" columns={[['timestamp','Timestamp'],['action','Action'],['entity_type','Entity'],['entity_id','ID']]}/>; }

@@ -1,0 +1,1 @@
+import React from 'react'; import DataPage from './DataPage'; export default function Vendors() { return <DataPage title="Vendors" endpoint="/vendors" columns={[['vendor_id','ID'],['vendor_name','Vendor'],['category','Category'],['total_spend','Total spend'],['risk_score','Risk score']]}/>; }

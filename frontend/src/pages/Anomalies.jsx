@@ -1,0 +1,1 @@
+import React from 'react'; import DataPage from './DataPage'; export default function Anomalies() { return <DataPage title="Anomalies" endpoint="/anomalies" columns={[['transaction_id','Transaction'],['description','Description'],['amount','Amount'],['risk_level','Risk'],['risk_score','Score']]}/>; }

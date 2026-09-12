@@ -1,0 +1,1 @@
+import React from 'react'; import DataPage from './DataPage'; export default function Notifications() { return <DataPage title="Notifications" endpoint="/notifications" columns={[['severity','Severity'],['title','Title'],['description','Description']]}/>; }

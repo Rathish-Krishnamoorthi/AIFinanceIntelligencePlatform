@@ -1,0 +1,1 @@
+import React from 'react'; import DataPage from './DataPage'; export default function Forecasting() { return <DataPage title="Cash Flow Forecast" endpoint="/forecast/cash-flow?horizon=30" columns={[['date','Date'],['predicted_cash_balance','Predicted balance'],['lower','Lower'],['upper','Upper']]}/>; }
