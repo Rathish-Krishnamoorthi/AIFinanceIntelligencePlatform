@@ -1,1 +1,1 @@
-"""HTTP routers for the FinSight API."""
+"""HTTP routers for the Fintel API."""

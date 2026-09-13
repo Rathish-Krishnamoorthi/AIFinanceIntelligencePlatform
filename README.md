@@ -1,21 +1,21 @@
-# FinSight AI
+# Fintel
 
-FinSight AI is a production-oriented financial intelligence platform: JWT-protected operations, MongoDB-ready persistence, explainable anomaly/risk scoring, invoice workflow, cash-flow forecasting, budget recommendations, and a data-grounded assistant.
+Fintel is a production-oriented financial intelligence platform: JWT-protected operations, MongoDB-ready persistence, explainable anomaly/risk scoring, invoice workflow, cash-flow forecasting, budget recommendations, and a data-grounded assistant.
 
 ## Features
 
 - FastAPI REST API with OpenAPI at `http://localhost:8000/api/docs`
 - React/Vite + MUI responsive executive dashboard with Recharts
-- MongoDB Atlas repository with indexes and a transparent in-memory demo fallback
+- MongoDB Atlas repository with indexes and an empty in-memory fallback for local development
 - Secure password hashing and JWT bearer authentication with role claims
 - Invoice PDF/image upload validation, extraction fallback, duplicate/risk workflow
 - Explainable anomaly detection, vendor risk, forecast confidence ranges, and budget evidence
-- Transactions, invoices, vendors, approvals, notifications, audit logs, and assistant endpoints
+- Transactions, CSV/XLSX imports, invoices, vendors, approvals, notifications, audit logs, RBAC, and assistant workflows
 
 ## Architecture
 
 `frontend/` is a Vite SPA communicating exclusively through Axios with `backend/app/main.py`.
-The backend keeps persistence in `core/database.py`, security in `core/security.py`, and analytics calculations behind API services. When `MONGODB_URI` is absent or unavailable, startup seeds realistic demo records in memory and reports `database_mode: demo`; errors are not hidden.
+The backend keeps persistence in `core/database.py`, security in `core/security.py`, and analytics calculations behind API services. When `MONGODB_URI` is absent or unavailable, the local JSON fallback persists users and financial records in `backend/data/store.json`; no synthetic records are created.
 
 ## Quick start
 
@@ -32,7 +32,7 @@ uvicorn app.main:app --reload
 
 Optional MongoDB Atlas setup: put a restricted Atlas connection string in `backend/.env` as `MONGODB_URI`, set `DATABASE_NAME`, and allow the development IP in Atlas Network Access. No frontend secret is required.
 
-Seed explicitly with `python seed.py`. Startup also seeds an empty database. Demo credentials are `demo@finsight.ai` / `Demo123!`.
+Create the first account from the sign-in screen or `POST /api/auth/register`. MongoDB is recommended for multi-user deployments; local development persists to `backend/data/store.json` when MongoDB is unavailable.
 
 ### Frontend
 
@@ -47,7 +47,7 @@ Set `VITE_API_BASE_URL` to the deployed API URL when deploying. Never put `MONGO
 
 ## API highlights
 
-`POST /api/auth/register`, `POST /api/auth/login`, `GET /api/auth/me`, dashboard metrics, CRUD transactions, invoice upload/approval, vendors, anomalies, `/api/forecast/cash-flow`, budgets/recommendations, risk overview, `/api/assistant/chat`, approvals, notifications, and audit logs. Every protected route requires the JWT returned by login.
+`POST /api/auth/register`, `POST /api/auth/login`, `GET /api/auth/me`, CRUD/import transactions, invoice extraction/validation/approval, `/api/admin/users`, `/api/admin/departments`, `/api/assistant/chat`, `/api/assistant/workflows`, approvals, notifications, and audit logs. ADMIN and FINANCE_MANAGER users can assign departments and approve invoices; other roles are restricted to their department. Every protected route requires the JWT returned by login.
 
 ## AI/ML approach
 

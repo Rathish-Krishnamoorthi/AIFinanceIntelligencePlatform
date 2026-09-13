@@ -9,7 +9,9 @@ class TransactionCreate(BaseModel):
     category: str
     description: str = ""
     vendor_id: Optional[str] = None
+    vendor_name: Optional[str] = None
     account: str = "Operating"
     payment_method: str = "Bank transfer"
     currency: str = "INR"
     status: str = "COMPLETED"
+    department: Optional[str] = None

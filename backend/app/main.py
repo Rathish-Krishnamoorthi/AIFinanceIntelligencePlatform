@@ -2,11 +2,10 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from .core.config import settings
-from .core.database import seed_demo
-from .routers import auth, dashboard, transactions, invoices, vendors, intelligence, assistant, approvals, notifications, audit
+from .routers import auth, dashboard, transactions, invoices, vendors, intelligence, assistant, approvals, notifications, audit, admin
 
 app = FastAPI(
-    title="FinSight AI",
+    title="Fintel",
     version="1.0.0",
     description="Explainable financial intelligence and operations API",
 )
@@ -20,13 +19,8 @@ app.add_middleware(
 
 for router in (auth.router, dashboard.router, transactions.router, invoices.router,
                vendors.router, intelligence.router, assistant.router, approvals.router,
-               notifications.router, audit.router):
+               notifications.router, audit.router, admin.router):
     app.include_router(router, prefix="/api")
-
-
-@app.on_event("startup")
-def startup():
-    seed_demo()
 
 
 @app.get("/api/health")
@@ -35,6 +29,6 @@ def health():
     return {
         "status": "ok",
         "database": "mongodb" if not store.demo_mode else "demo-fallback",
-        "message": "Demo data is used only because MongoDB is unavailable."
+        "message": "No seed data is loaded; records come from users and imports."
         if store.demo_mode else "Connected to MongoDB",
     }

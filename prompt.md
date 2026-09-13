@@ -2,7 +2,7 @@
 
 ## AI Financial Intelligence Platform
 
-Build a production-quality full-stack web application called **FinSight AI — AI-Powered Financial Intelligence & Operations Platform**.
+Build a production-quality full-stack web application called **Fintel — AI-Powered Financial Intelligence & Operations Platform**.
 
 The platform must analyze business financial data, detect anomalies and fraud, process invoices, forecast cash flow, optimize budgets, automate financial workflows, and provide explainable AI-powered recommendations.
 

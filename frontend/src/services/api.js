@@ -6,4 +6,15 @@ api.interceptors.request.use((config) => {
   if (token) config.headers.Authorization = `Bearer ${token}`;
   return config;
 });
+
+export function apiErrorMessage(error, fallback = 'Request failed') {
+  const detail = error?.response?.data?.detail;
+  if (Array.isArray(detail)) {
+    return detail.map((item) => item.msg || item.message || String(item)).join('. ');
+  }
+  if (typeof detail === 'string') return detail;
+  if (error?.message) return error.message;
+  return fallback;
+}
+
 export default api;

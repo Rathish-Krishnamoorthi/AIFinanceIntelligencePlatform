@@ -1,1 +1,1 @@
-"""FinSight AI backend."""
+"""Fintel backend."""

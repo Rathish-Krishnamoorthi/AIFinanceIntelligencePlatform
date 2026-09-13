@@ -1,4 +1,5 @@
 import React from 'react';
-import { Card, CardContent, Typography } from '@mui/material';
+import { AutoAwesome } from '@mui/icons-material';
+import { Card, CardContent, Stack, Typography } from '@mui/material';
 import RiskBadge from './RiskBadge';
-export default function AIInsightCard({ insight }) { return <Card><CardContent><RiskBadge level={insight.severity} /><Typography variant="h6" sx={{ mt: 1 }}>{insight.title}</Typography><Typography>{insight.description}</Typography><Typography color="text.secondary" sx={{ mt: 1 }}>Why: {insight.evidence?.join(' · ')}</Typography></CardContent></Card>; }
+export default function AIInsightCard({ insight }) { return <Card sx={{ borderLeft: '4px solid', borderLeftColor: insight.severity === 'HIGH' ? 'error.main' : 'warning.main' }}><CardContent sx={{ p: 2.5 }}><Stack direction="row" justifyContent="space-between" alignItems="center"><Stack direction="row" spacing={1} alignItems="center"><AutoAwesome sx={{ color: 'secondary.main', fontSize: 18 }} /><Typography variant="caption" sx={{ fontWeight: 800, color: 'text.secondary' }}>AI INSIGHT</Typography></Stack><RiskBadge level={insight.severity} /></Stack><Typography variant="h6" sx={{ mt: 1.5 }}>{insight.title}</Typography><Typography color="text.secondary" sx={{ mt: .5 }}>{insight.description}</Typography><Typography color="text.secondary" sx={{ mt: 1.5, fontSize: 13 }}><b>Why this matters:</b> {insight.evidence?.join(' · ')}</Typography></CardContent></Card>; }

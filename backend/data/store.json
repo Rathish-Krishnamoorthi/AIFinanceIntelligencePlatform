@@ -1,0 +1,154 @@
+{
+  "users": [
+    {
+      "_id": "b851d046-575d-436b-b0aa-87197125e16e",
+      "email": "persist21789285361907@example.com",
+      "name": "Persistent Two",
+      "role": "EMPLOYEE",
+      "department": "Finance",
+      "password_hash": "$2b$12$Iukt7K6GYOFYSS3vCAlQiOTx/TwxLH3XeMK6pPtQwle9jMU/RNhC."
+    },
+    {
+      "_id": "4ba61f7e-f108-4ba3-a383-0c8846a65660",
+      "email": "rathish@gmail.com",
+      "name": "rathish",
+      "role": "EMPLOYEE",
+      "department": "General",
+      "password_hash": "$2b$12$4TjGW24vaYICXVmrh8Kmp.pM9P5tW51RAa8ft6Dqp.M3nxhxwkdfm"
+    },
+    {
+      "_id": "d085d63f-42bf-47d0-8e39-d6e23e504bc7",
+      "email": "rio@gmail.com",
+      "name": "rio",
+      "role": "EMPLOYEE",
+      "department": "General",
+      "password_hash": "$2b$12$9JnpCgjOmcHkpwB1oJHKwepOmkL8r/.ewrp7PQ2Rj0AO.JB713St2"
+    },
+    {
+      "_id": "c9560807-7110-4ab3-9de3-16347bf5c42b",
+      "email": "rock@gmail.com",
+      "name": "rock",
+      "role": "EMPLOYEE",
+      "department": "General",
+      "password_hash": "$2b$12$5sASOhM6QUSECw6bbj6X9OM/i64LY7wykip1o/IywqVY/GwDhfw5u"
+    },
+    {
+      "_id": "4aeccf21-64d4-4832-9856-c7188e262bef",
+      "email": "tanish@gmail.com",
+      "name": "tanish",
+      "role": "EMPLOYEE",
+      "department": "General",
+      "password_hash": "$2b$12$9FDfrlBxpqGMqSfsg58qE.jTw1t1rsPTBCO3rwVa0DfQ9kFTiNVzO"
+    },
+    {
+      "_id": "1a6e8aca-c2a8-4051-85c3-93257599bc9b",
+      "email": "rathishjk@gmail.com",
+      "name": "Rathish_JK",
+      "role": "EMPLOYEE",
+      "department": "General",
+      "password_hash": "$2b$12$LD4UCekPVxJ15K/sCI7JFeJN.cT3f.omoulT2YNSI9Jl92R2cVnFa"
+    },
+    {
+      "_id": "e712cc63-6dee-4ca3-a144-6ba63a3ec343",
+      "email": "admin@gmail.com",
+      "name": "Admin",
+      "role": "SYSTEM_ADMIN",
+      "department": "Finance",
+      "password_hash": "$2b$12$KyYDLOUu09YhQujKIchxnOtp2wSKVB1ouI9UTEU5PL32a6WEHNy.G"
+    },
+    {
+      "_id": "6e668b27-d038-44d3-89fd-0d867b02dc78",
+      "email": "rick@gmail.com",
+      "name": "Rick Verified",
+      "role": "CFO",
+      "department": "Finance",
+      "organization_id": null,
+      "is_active": true,
+      "created_at": "2026-09-13T10:02:52.676290+00:00",
+      "password_hash": "$2b$12$WuYS/f7ZUpJ8a8efTasbwOdWwoSgaxDTErFSZ/l.73b7DA7veNCL.",
+      "job_title": "CFO",
+      "phone": "12345"
+    },
+    {
+      "_id": "3fe48de5-198c-49b6-b23a-d3fb4ad13a5d",
+      "email": "roma@gmail.com",
+      "name": "roma",
+      "role": "FINANCE_MANAGER",
+      "department": "Finance",
+      "organization_id": null,
+      "is_active": true,
+      "created_at": "2026-09-13T10:51:51.019035+00:00",
+      "password_hash": "$2b$12$g8m9pdblwR5vQ744iUWo6uLiVkJE4EoohQM2M/S8YlAYA2/AwVkV6"
+    }
+  ],
+  "transactions": [
+    {
+      "_id": "0d196e85-fffd-4f36-a28e-88cb5e49f69b",
+      "transaction_id": "TXN001",
+      "date": "2026-09-01",
+      "amount": 75000.0,
+      "transaction_type": "INCOME",
+      "category": "Salary",
+      "description": "Monthly salary",
+      "vendor_id": null,
+      "account": "HDFC Bank",
+      "payment_method": "Bank transfer",
+      "currency": "INR",
+      "status": "Completed",
+      "department": "General",
+      "created_at": "2026-09-13T08:26:31.324190+00:00",
+      "risk_score": 15,
+      "risk_level": "LOW"
+    }
+  ],
+  "invoices": [],
+  "vendors": [],
+  "budgets": [],
+  "notifications": [],
+  "audit_logs": [
+    {
+      "_id": "12fa7da2-8989-4a20-a73b-d064cda2af83",
+      "user_id": "4ba61f7e-f108-4ba3-a383-0c8846a65660",
+      "action": "created",
+      "entity_type": "transaction",
+      "entity_id": "TX-CE837FA6",
+      "timestamp": "2026-09-13T08:13:59.118740+00:00",
+      "reason": ""
+    },
+    {
+      "_id": "73a5078b-46fa-4056-a5da-5f67d4693636",
+      "user_id": "4ba61f7e-f108-4ba3-a383-0c8846a65660",
+      "action": "deleted",
+      "entity_type": "transaction",
+      "entity_id": "TX-CE837FA6",
+      "timestamp": "2026-09-13T08:14:36.351692+00:00",
+      "reason": ""
+    },
+    {
+      "_id": "e353a026-8d9e-490e-859c-1d3ebf55cfd6",
+      "user_id": "e712cc63-6dee-4ca3-a144-6ba63a3ec343",
+      "action": "created",
+      "entity_type": "user",
+      "entity_id": "6e668b27-d038-44d3-89fd-0d867b02dc78",
+      "role": "SYSTEM_ADMIN",
+      "module": "user",
+      "timestamp": "2026-09-13T10:02:53.365682+00:00",
+      "reason": "",
+      "result": "success"
+    },
+    {
+      "_id": "c881bdc7-a608-43a9-a885-1f52762316e5",
+      "user_id": "e712cc63-6dee-4ca3-a144-6ba63a3ec343",
+      "action": "created",
+      "entity_type": "user",
+      "entity_id": "3fe48de5-198c-49b6-b23a-d3fb4ad13a5d",
+      "role": "SYSTEM_ADMIN",
+      "module": "user",
+      "timestamp": "2026-09-13T10:51:51.452881+00:00",
+      "reason": "",
+      "result": "success"
+    }
+  ],
+  "forecasts": [],
+  "departments": []
+}

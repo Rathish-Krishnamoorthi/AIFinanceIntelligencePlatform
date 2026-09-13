@@ -1,13 +1,13 @@
-from fastapi import APIRouter, Depends
-from ..core.security import get_current_user
+from fastapi import APIRouter, Depends, HTTPException
+from ..core.security import get_current_user, require_permission
 from ..schemas.assistant import ChatRequest
-from ..services.common import collection
+from ..services.common import audit, collection, serialize, visible_documents
 
 router = APIRouter(prefix="/assistant", tags=["assistant"])
 
 
 @router.post("/chat")
-def chat(body: ChatRequest, user=Depends(get_current_user)):
+def chat(body: ChatRequest, user=Depends(require_permission('ASSISTANT_USE'))):
     question = body.question.lower()
     invoices, transactions, vendors = collection("invoices").find(), collection("transactions").find(), collection("vendors").find()
     if "vendor" in question and "risk" in question:
@@ -26,3 +26,34 @@ def chat(body: ChatRequest, user=Depends(get_current_user)):
     return {"answer": answer, "evidence": evidence,
             "reasoning": "Intent was classified and the response was generated from structured repository data; no numbers were invented.",
             "recommendation": "Review the linked records before making a financial decision.", "confidence": .86}
+
+
+@router.get("/workflows")
+def workflows(user=Depends(require_permission('ASSISTANT_USE'))):
+    invoices = visible_documents("invoices", user)
+    transactions = visible_documents("transactions", user)
+    pending = [invoice for invoice in invoices if invoice.get("status") in {"PENDING", "PENDING_APPROVAL"}]
+    flagged = [invoice for invoice in invoices if invoice.get("issues")]
+    uncategorized = [transaction for transaction in transactions if not transaction.get("category")]
+    return {"actions": [
+        {"type": "approve_invoice", "count": len(pending), "label": "Invoices waiting for approval",
+         "automatable": user.get("role") in {"ADMIN", "FINANCE_MANAGER"}},
+        {"type": "review_invoice", "count": len(flagged), "label": "Invoices with validation inconsistencies",
+         "automatable": False},
+        {"type": "categorize_expense", "count": len(uncategorized), "label": "Expenses needing categorization",
+         "automatable": True},
+    ]}
+
+
+@router.post("/workflows/{action}/{item_id}")
+def execute_workflow(action: str, item_id: str, user=Depends(require_permission('ASSISTANT_EXECUTE_ACTION'))):
+    if action != "approve_invoice" or user.get("role") not in {"ADMIN", "FINANCE_MANAGER"}:
+        raise HTTPException(403, "This workflow requires a finance officer or administrator")
+    invoice = next((row for row in visible_documents("invoices", user)
+                    if row.get("invoice_number") == item_id or row.get("_id") == item_id), None)
+    if not invoice:
+        raise HTTPException(404, "Invoice not found")
+    collection("invoices").update_one({"_id": invoice["_id"]}, {"$set": {"status": "APPROVED"}})
+    audit(user, "approved_by_agent", "invoice", invoice["invoice_number"])
+    invoice["status"] = "APPROVED"
+    return serialize(invoice)
